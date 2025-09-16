@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jodu Vyshnavi — Portfolio</title>
+  <meta name="description" content="Portfolio of Jodu Vyshnavi — B.Tech Cyber Security student, Java & full-stack builder.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0b5fff;
+      --glass: rgba(11,95,255,0.06);
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,var(--bg),#f0f4fb);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:var(--maxw);
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:28px;
+      align-items:start;
+    }
+
+    /* SIDEBAR */
+    .sidebar{
+      background:var(--card);
+      border-radius:16px;
+      padding:28px;
+      box-shadow:0 6px 18px rgba(14,30,60,0.06);
+      position:sticky;
+      top:32px;
+      height:calc(100vh - 64px);
+      overflow:auto;
+    }
+    .avatar{
+      width:96px;height:96px;border-radius:14px;display:block;
+      margin:0 auto 16px auto;background:linear-gradient(135deg,var(--accent),#6b8bff);
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:28px;
+      box-shadow:0 6px 18px rgba(11,95,255,0.12);
+    }
+    .name{ text-align:center;font-weight:700;font-size:20px;margin-bottom:6px;}
+    .location{ text-align:center;color:var(--muted);font-size:13px;margin-bottom:14px;}
+    .contacts{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+    .contacts a{ text-decoration:none;color:#0f172a;border-radius:8px;padding:8px 10px;display:flex;gap:8px;align-items:center }
+    .chip{background:var(--glass);padding:6px 8px;border-radius:8px;font-weight:600;color:var(--accent);font-size:12px}
+    .section-title{font-weight:700;margin-top:18px;margin-bottom:8px;font-size:13px;color:#111827}
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .skill{background:#f3f6ff;padding:8px 10px;border-radius:8px;font-size:13px;color:#0b3bb5}
+    .small-muted{font-size:13px;color:var(--muted);line-height:1.3}
+
+    /* MAIN */
+    .main{
+      min-height:400px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:16px;
+      padding:28px;
+      box-shadow:0 6px 18px rgba(14,30,60,0.06);
+      margin-bottom:20px;
+    }
+
+    .top-row{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:12px}
+    .headline{font-size:22px;font-weight:800}
+    .subhead{color:var(--muted);font-size:14px}
+
+    .summary{margin-top:6px;color:#0f172a;font-size:15px}
+    .stats{display:flex;gap:12px;margin-top:16px}
+    .stat{background:linear-gradient(180deg,#fff,#fbfdff);padding:10px;border-radius:10px;flex:1;text-align:center;box-shadow:0 2px 6px rgba(10,12,26,0.04)}
+    .stat strong{display:block;font-size:18px}
+    .projects-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:12px}
+
+    .project{
+      border-radius:12px;padding:14px;background:linear-gradient(180deg,#fff,#fcfdff);cursor:default;
+      transition:transform .18s ease, box-shadow .18s ease;border:1px solid rgba(10,20,30,0.04);
+    }
+    .project:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(10,20,40,0.06)}
+    .project h4{margin:0 0 8px 0}
+    .project p{margin:0;color:var(--muted);font-size:13px}
+    .btn{
+      display:inline-block;padding:8px 12px;border-radius:10px;background:var(--accent);color:white;font-weight:600;font-size:13px;text-decoration:none;
+      box-shadow:0 8px 18px rgba(11,95,255,0.12);
+    }
+
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .time-item{padding:12px;border-radius:10px;background:#fbfdff;border:1px solid rgba(10,20,30,0.03)}
+    .certs{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .cert{padding:8px 10px;border-radius:8px;background:#fff7ed;border:1px solid rgba(250,160,60,0.12);font-size:13px;color:#c46200}
+
+    .ach-list{display:flex;flex-direction:column;gap:10px}
+    .ach{padding:10px;background:#f8fbff;border-radius:8px;border:1px solid rgba(10,20,30,0.03);font-size:14px;color:#0b2a5a}
+
+    footer{margin-top:12px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* nav */
+    .nav{
+      display:flex;gap:12px;align-items:center;
+    }
+    .nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;padding:8px;border-radius:8px}
+    .nav a.active{background:var(--glass);color:var(--accent)}
+
+    /* responsive */
+    @media (max-width:980px){
+      .wrap{grid-template-columns:1fr;max-width:920px}
+      .sidebar{position:relative;height:auto}
+    }
+
+    /* print-friendly */
+    @media print{
+      body{background:white;padding:0}
+      .wrap{box-shadow:none;max-width:100%}
+      .sidebar{display:none}
+      .card{box-shadow:none;border-radius:0;padding:10px}
+    }
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(4,8,20,0.5);display:none;align-items:center;justify-content:center;z-index:60}
+    .modal{background:var(--card);width:min(720px,95%);border-radius:12px;padding:20px;box-shadow:0 18px 50px rgba(5,10,30,0.3)}
+    .modal h3{margin-top:0}
+    .modal .close{float:right;background:#f1f5f9;border-radius:8px;padding:8px 10px;border:none;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="avatar" aria-hidden="true">JV</div>
+      <div class="name">Jodu Vyshnavi</div>
+      <div class="location">Hyderabad, India</div>
+
+      <div class="contacts" aria-label="Contact information">
+        <a href="mailto:joduvyshnavi@gmail.com" title="Email">
+          <span class="chip">Email</span>
+          <span style="margin-left:8px" class="small-muted">joduvyshnavi@gmail.com</span>
+        </a>
+        <a href="tel:+916300195078" title="Phone">
+          <span class="chip">Call</span>
+          <span class="small-muted">+91 6300195078</span>
+        </a>
+        <a href="https://linkedin.com/in/jodu-vyshnavi-5426011a7" target="_blank" rel="noopener noreferrer">
+          <span class="chip">LinkedIn</span>
+          <span class="small-muted">linkedin.com/in/jodu-vyshnavi-5426011a7</span>
+        </a>
+        <a href="https://github.com/JoduVyshnavi17" target="_blank" rel="noopener noreferrer">
+          <span class="chip">GitHub</span>
+          <span class="small-muted">github.com/JoduVyshnavi17</span>
+        </a>
+        <a href="/mnt/data/joduvyshnavi_resume(4).pdf" download title="Download Resume">
+          <span class="chip">Resume</span>
+          <span class="small-muted">Download PDF</span>
+        </a>
+      </div>
+
+      <div class="section-title">Technical skills</div>
+      <div class="skills" aria-hidden="true">
+        <div class="skill">Java</div>
+        <div class="skill">Spring Boot</div>
+        <div class="skill">MySQL</div>
+        <div class="skill">HTML & CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Python (basic)</div>
+        <div class="skill">OpenCV / CNN</div>
+        <div class="skill">DSA</div>
+        <div class="skill">Git</div>
+      </div>
+
+      <div class="section-title">Education</div>
+      <div class="small-muted">
+        MLRITM, Hyderabad — <strong>B.Tech CSE (Cyber Security)</strong><br>
+        2022 — 2026 • CGPA: <strong>9.54</strong>
+      </div>
+
+      <div class="section-title">Certifications</div>
+      <div class="certs" aria-hidden="true">
+        <div class="cert">ServiceNow - Certified SysAdmin (Aug 2025)</div>
+        <div class="cert">Java Full Stack - Coursera (Apr 2025)</div>
+        <div class="cert">Web Technologies - NPTEL (Jan 2025)</div>
+        <div class="cert">DSA Using Java - Infosys (Feb 2025)</div>
+        <div class="cert">AWS Data Eng. - Eduskills (Mar 2025)</div>
+      </div>
+
+      <footer>
+        Built from resume details. :contentReference[oaicite:1]{index=1}
+      </footer>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <section class="card" id="about">
+        <div class="top-row">
+          <div>
+            <div class="headline">Hi — I'm <span style="color:var(--accent)">Jodu Vyshnavi</span></div>
+            <div class="subhead">B.Tech Cyber Security student • Full-stack & Java developer</div>
+          </div>
+          <nav class="nav" aria-label="Page navigation">
+            <a href="#about" class="active">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+
+        <p class="summary">
+          B.Tech Cyber Security student with a strong academic record (CGPA 9.54) and practical experience building full-stack applications. Skilled in Java, Spring Boot, MySQL and front-end web tech. Developed an online event planner and a driver drowsiness detection system that combines deep learning and real-time image processing. Passionate about building reliable software and solving algorithmic problems (300+ solved). :contentReference[oaicite:2]{index=2}
+        </p>
+
+        <div class="stats" role="list" aria-label="Key highlights">
+          <div class="stat" role="listitem">
+            <span class="small-muted">CGPA</span>
+            <strong>9.54</strong>
+          </div>
+          <div class="stat" role="listitem">
+            <span class="small-muted">DSA</span>
+            <strong>300+ solved</strong>
+          </div>
+          <div class="stat" role="listitem">
+            <span class="small-muted">Projects</span>
+            <strong>Full-stack & ML</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="projects" aria-labelledby="projects-heading">
+        <h3 id="projects-heading" style="margin-top:0">Selected Projects</h3>
+        <div class="projects-list" id="projects-list">
+          <article class="project" data-project="event">
+            <h4>Online Event Planner</h4>
+            <p>Full-stack platform for booking event organizers in Hyderabad — Java, Spring Boot, HTML/CSS/JS, MySQL.</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:13px">Features: filter, reviews, order modals, backend REST API integration.</p>
+            <div style="margin-top:10px">
+              <a class="btn" href="#" data-open="event">View details</a>
+            </div>
+          </article>
+
+          <article class="project" data-project="drowsiness">
+            <h4>Driver Drowsiness Detection</h4>
+            <p>Real-time detection using facial & eye tracking with CNN and OpenCV to detect driver fatigue.</p>
+            <div style="margin-top:10px">
+              <a class="btn" href="#" data-open="drowsiness">View details</a>
+            </div>
+          </article>
+
+          <!-- placeholder for additional projects -->
+          <article class="project">
+            <h4>Other Work & DSA</h4>
+            <p>Solved 300+ algorithmic problems across LeetCode and CodeChef; hands-on practice with Java and data structures.</p>
+            <div style="margin-top:10px">
+              <a class="btn" href="https://github.com/JoduVyshnavi17" target="_blank" rel="noopener noreferrer">See code</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" id="education">
+        <h3 style="margin-top:0">Education & Achievements</h3>
+
+        <div class="timeline" aria-hidden="true">
+          <div class="time-item">
+            <strong>MLRITM, Hyderabad</strong>
+            <div style="color:var(--muted);font-size:13px">B.Tech in CSE (Cyber Security) — 2022–2026</div>
+            <div style="margin-top:6px">Relevant courses: Cyber Security, Operating Systems, DBMS, Computer Networks.</div>
+          </div>
+
+          <div class="time-item">
+            <strong>Certifications</strong>
+            <div style="color:var(--muted);font-size:13px;margin-top:6px">
+              ServiceNow (Certified SysAdmin), Java Full Stack (Coursera), NPTEL Web Technologies, DSA Using Java (Infosys), AWS Data Engineering (Eduskills).
+            </div>
+          </div>
+
+          <div class="time-item">
+            <strong>Achievements</strong>
+            <div class="ach-list" style="margin-top:8px">
+              <div class="ach">Solved 300+ LeetCode problems — 200 Days Badge.</div>
+              <div class="ach">Java Foundations Badge (Oracle); Android Dev Badge (Google).</div>
+              <div class="ach">CodeChef 100 Days Streak; active profiles: LeetCode: JoduVyshnavi; CodeChef: joduvyshu123.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="contact">
+        <h3 style="margin-top:0">Contact</h3>
+        <p class="small-muted">I am open to internships and software development roles. You can reach me via email or phone (details in sidebar).</p>
+
+        <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn" href="mailto:joduvyshnavi@gmail.com">Email me</a>
+          <a class="btn" href="https://linkedin.com/in/jodu-vyshnavi-5426011a7" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn" href="https://github.com/JoduVyshnavi17" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn" href="/mnt/data/joduvyshnavi_resume(4).pdf" download>Download resume</a>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted);font-size:13px">
+          <strong>Location:</strong> Hyderabad, India<br>
+          <strong>Phone:</strong> +91 6300195078
+        </div>
+      </section>
+
+      <footer style="margin-top:12px;color:var(--muted);font-size:13px;text-align:center">
+        © <span id="year"></span> Jodu Vyshnavi — Portfolio generated from resume. :contentReference[oaicite:3]{index=3}
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Modal markup -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-hidden="true">
+    <div class="modal" role="document" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close" id="modalClose" aria-label="Close">✕</button>
+      <h3 id="modalTitle"></h3>
+      <div id="modalBody" style="margin-top:10px;color:var(--muted);font-size:14px"></div>
+      <div style="margin-top:16px;text-align:right">
+        <a id="modalAction" class="btn" href="#" target="_blank" rel="noopener noreferrer">Open project</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Populate year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Navigation active state and smooth scroll
+    document.querySelectorAll('.nav a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
+        a.classList.add('active');
+        const id = a.getAttribute('href');
+        document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // Project modals content (keeps it professional & formal)
+    const projectData = {
+      event: {
+        title: "Online Event Planner — Full Stack",
+        body: `<p><strong>Tech:</strong> Java, Spring Boot, HTML, CSS, JS, MySQL.</p>
+               <p>Built a full-stack booking platform for event organizers in Hyderabad. Implemented features: advanced filtering, user reviews, order modals and RESTful backend integration. Focus on maintainable service layers and secure API design.</p>
+               <ul style="margin-top:8px;color:var(--muted)"><li>Backend: Spring Boot REST APIs, MySQL persistence.</li><li>Frontend: Responsive UI, modals for orders and reviews.</li><li>Focus: UX, data validation & security.</li></ul>`,
+        action: "https://github.com/JoduVyshnavi17" // placeholder; adjust to actual repo if available
+      },
+      drowsiness: {
+        title: "Driver Drowsiness Detection — ML & CV",
+        body: `<p><strong>Tech:</strong> Python, OpenCV, Convolutional Neural Networks.</p>
+               <p>Implemented a real-time system that tracks facial landmarks and eye state to detect fatigue. Combined CNN-based classification with OpenCV-based face/eye tracking for improved accuracy and latency.</p>
+               <ul style="margin-top:8px;color:var(--muted)"><li>Real-time image processing pipeline.</li><li>Model training & evaluation with accuracy optimizations.</li><li>Applied pre/post-processing for robust detection in varied lighting.</li></ul>`,
+        action: "https://github.com/JoduVyshnavi17" // placeholder
+      }
+    };
+
+    // Modal handling
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const modalAction = document.getElementById('modalAction');
+    const modalClose = document.getElementById('modalClose');
+
+    document.querySelectorAll('[data-open]').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const key = btn.getAttribute('data-open');
+        const data = projectData[key];
+        if(!data) return;
+        modalTitle.innerHTML = data.title;
+        modalBody.innerHTML = data.body;
+        modalAction.href = data.action;
+        modalAction.textContent = "View repository";
+        modalBackdrop.style.display = 'flex';
+        modalBackdrop.setAttribute('aria-hidden','false');
+      });
+    });
+
+    modalClose.addEventListener('click', ()=>closeModal());
+    modalBackdrop.addEventListener('click', (e)=>{
+      if(e.target === modalBackdrop) closeModal();
+    });
+
+    function closeModal(){
+      modalBackdrop.style.display = 'none';
+      modalBackdrop.setAttribute('aria-hidden','true');
+    }
+
+    // Small accessibility: keyboard close
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && modalBackdrop.style.display === 'flex') closeModal();
+    });
+
+    // Improve focus for keyboard users: focus outline
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Tab') document.body.classList.add('show-focus-outlines');
+    });
+
+    // Analytics-like console log (non-PII)
+    console.log('Portfolio loaded for: Jodu Vyshnavi — generated from resume data.');
+
+  </script>
+</body>
+</html>
